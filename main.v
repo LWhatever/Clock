@@ -1,13 +1,18 @@
-/*module Display(CLOCK, set_s, set_m, set_h, add, rst, S0, S1, M0, M1, H0, H1);
-	input CLOCK, set_s, set_m, set_h, add, rst;
+module Display(CLOCK, set_s, set_m, set_h, rst, S0, S1, M0, M1, H0, H1, S0_ld, S1_ld, M0_ld, M1_ld, H0_ld, H1_ld);
+	input CLOCK, set_s, set_m, set_h, rst;
+	input [3:0] S0_ld, S1_ld, M0_ld, M1_ld, H0_ld, H1_ld;
 	output [3:0] S0, S1, M0, M1, H0, H1;
-	wire [3:0] s0, s1, m0, m1, h0, h1;
 	wire clk, done_s, done_m;
+	reg Done_S, Done_M;
+	always@(*) begin
+		Done_S <= done_s;
+		Done_M <= done_m;
+	end
 	div_clk(CLOCK,clk);
-	Counter1 cnt_s(clk, rst, s0, s1, done_s);
-	Counter1 cnt_m(done_s, rst, m0, m1, done_m);
-
-endmodule*/
+	Counter1 cnt_s(clk, rst, set_s, S0_ld, S1_ld, S0, S1, done_s);
+	Counter1 cnt_m(Done_S, rst, set_m, M0_ld, M1_ld, M0, M1, done_m);
+	Counter2 cnt_h(Done_M, rst, set_h, H0_ld, H1_ld, H0, H1);
+endmodule
 
 module Counter1(clk, rst, ld, d0, d1, c0, c1, done);							//0~60 counter
 	input rst, clk, ld; 												// reset, clock and load
