@@ -1,3 +1,4 @@
+//FPGA CLOCK
 module Display(CLOCK, set_s, set_m, set_h, rst, S0, S1, M0, M1, H0, H1, S0_ld, S1_ld, M0_ld, M1_ld, H0_ld, H1_ld);
 	input CLOCK, set_s, set_m, set_h, rst;
 	input [3:0] S0_ld, S1_ld, M0_ld, M1_ld, H0_ld, H1_ld;
