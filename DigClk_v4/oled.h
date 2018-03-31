@@ -1,33 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////	 
-//±¾³ÌĞòÖ»¹©Ñ§Ï°Ê¹ÓÃ£¬Î´¾­×÷ÕßĞí¿É£¬²»µÃÓÃÓÚÆäËüÈÎºÎÓÃÍ¾
-//ÖĞ¾°Ô°µç×Ó
-//µêÆÌµØÖ·£ºhttp://shop73023976.taobao.com/?spm=2013.1.0.0.M4PqC2
-//
-//  ÎÄ ¼ş Ãû   : oled.c
-//  °æ ±¾ ºÅ   : v2.0
-//  ×÷    Õß   : HuangKai
-//  Éú³ÉÈÕÆÚ   : 2014-0101
-//  ×î½üĞŞ¸Ä   : 
-//  ¹¦ÄÜÃèÊö   : 1.3´çOLED ½Ó¿ÚÑİÊ¾Àı³Ì(MSP430F149ÏµÁĞ)
-//  Çı¶¯IC     :SSD1309
-//              ËµÃ÷: 
-//              ----------------------------------------------------------------
-//              GND    µçÔ´µØ
-//              VCC  ½Ó5V»ò3.3vµçÔ´
-//              D0   P13£¨Ê±ÖÓ£©
-//              D1   P14£¨Êı¾İ£©
-//              RES  ½ÓP11
-//              DC   ½ÓP12
-//              CS   ½ÓP10               
-//              ----------------------------------------------------------------
-// ĞŞ¸ÄÀúÊ·   :
-// ÈÕ    ÆÚ   : 
-// ×÷    Õß   : HuangKai
-// ĞŞ¸ÄÄÚÈİ   : ´´½¨ÎÄ¼ş
-//°æÈ¨ËùÓĞ£¬µÁ°æ±Ø¾¿¡£
-//Copyright(C) ÖĞ¾°Ô°µç×Ó2014/3/16
-//All rights reserved
-//******************************************************************************/
 #ifndef __OLED_H
 #define __OLED_H			  	 
 #include <msp430.h>
@@ -35,15 +5,15 @@
 #include	<intrinsics.h> 
 #define  u8 unsigned char 
 #define  u32 unsigned int 
-#define OLED_CMD  0	//Ğ´ÃüÁî
-#define OLED_DATA 1	//Ğ´Êı¾İ
+#define OLED_CMD  0	//å†™å‘½ä»¤
+#define OLED_DATA 1	//å†™æ•°æ®
 
 
-#define     Set_Bit(val, bitn)      (val |= (/*1 <<*/(bitn)))       //¸m¬Y¦ì¬° 1
-#define     Clr_Bit(val, bitn)      (val &= ~(/*1<<*/(bitn)))       //¸m¬Y¦ì¬° 0
-#define     Get_Bit(val, bitn)      (val & (1<<(bitn)) )        //¨ú±o¬Y¦ìªº­È
+#define     Set_Bit(val, bitn)      (val |= (/*1 <<*/(bitn)))       //ç«šç˜î”îƒ‹ 1
+#define     Clr_Bit(val, bitn)      (val &= ~(/*1<<*/(bitn)))       //ç«šç˜î”îƒ‹ 0
+#define     Get_Bit(val, bitn)      (val & (1<<(bitn)) )        //îŸçœ”ç˜î”î€™î…
 //----------------------------------------------------------------------------------
-//OLED SSD1306 SPI  Ê±ÖÓD0
+//OLED SSD1306 SPI  æ—¶é’ŸD0
 //#define       OLED_SSD1306_SCLK_DIR           (P1DIR)
 //#define       OLED_SSD1306_SCLK_OUT           (P1OUT)
 #define     OLED_SSD1306_SCLK_PIN_NUM       (BIT4)
@@ -53,7 +23,7 @@
 #define     OLED_SCLK_Clr()             (Clr_Bit(P2OUT,OLED_SSD1306_SCLK_PIN_NUM))
 
 //----------------------------------------------------------------------------------
-//OLED SSD1306 SPI Êı¾İD1
+//OLED SSD1306 SPI æ•°æ®D1
 //#define       OLED_SSD1306_SDIN_DIR           (P1DIR)
 //#define       OLED_SSD1306_SDIN_OUT           (P1OUT)
 #define     OLED_SSD1306_SDIN_PIN_NUM       (BIT3)
@@ -63,7 +33,7 @@
 #define     OLED_SDIN_Clr()                 (Clr_Bit(P2OUT,OLED_SSD1306_SDIN_PIN_NUM))
 
 //----------------------------------------------------------------------------------
-//OLED SSD1306 Êı¾İ/ÃüÁîDC
+//OLED SSD1306 æ•°æ®/å‘½ä»¤DC
 //#define       OLED_SSD1306_DC_DIR             (P1DIR)
 //#define       OLED_SSD1306_DC_OUT             (P1OUT)
 #define     OLED_SSD1306_DC_PIN_NUM         (BIT1)
@@ -73,7 +43,7 @@
 #define     OLED_DC_Clr()               (Clr_Bit(P2OUT,OLED_SSD1306_DC_PIN_NUM))
 
 //----------------------------------------------------------------------------------
-//OLED SSD1306 ¤ùÆ¬Ñ¡CS
+//OLED SSD1306 î·ç‰‡é€‰CS
 //#define       OLED_SSD1306_CE_DIR             (P1DIR)
 //#define       OLED_SSD1306_CE_OUT             (P1OUT)
 #define     OLED_SSD1306_CE_PIN_NUM         (BIT0)
@@ -83,7 +53,7 @@
 #define     OLED_CS_Clr()               (Clr_Bit(P2OUT,OLED_SSD1306_CE_PIN_NUM))
 
 //----------------------------------------------------------------------------------
-//OLED SSD1306 ¸´Î»/RES
+//OLED SSD1306 å¤ä½/RES
 //#define       OLED_SSD1306_RST_DIR            (P1DIR)
 //#define       OLED_SSD1306_RST_OUT            (P1OUT)
 #define     OLED_SSD1306_RST_PIN_NUM        (BIT2)
@@ -100,14 +70,14 @@
 #define	Brightness	0xFF 
 #define X_WIDTH 	128
 #define Y_WIDTH 	64	    						  
-//-----------------OLED¶Ë¿Ú¶¨Òå----------------  					   
+//-----------------OLEDç«¯å£å®šä¹‰----------------  					   
 
 void delay_ms(unsigned int ms);
 
 
  		     
 
-//OLED¿ØÖÆÓÃº¯Êı
+//OLEDæ§åˆ¶ç”¨å‡½æ•°
 void OLED_WR_Byte(u8 dat,u8 cmd);	    
 void OLED_Display_On(void);
 void OLED_Display_Off(void);	   							   		    
