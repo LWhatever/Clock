@@ -1,5 +1,5 @@
 
-//Anthor:LWhatever
+//Anthor:LWhatever_WHU
 #include <msp430f6638.h>
 #include <stdint.h>
 #include <stdio.h>
